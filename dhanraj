@@ -223,7 +223,7 @@ while flag==1:
 
 
 
-Experiment No.2:Write a Python program to compute following operations on String:
+Experiment No.2 :Write a Python program to compute following operations on String:
 a) To display word with the longest length
 b) To determines the frequency of occurrence of particular character in the string
 c) To check whether given string is palindrome or not
