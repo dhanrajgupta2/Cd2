@@ -1,0 +1,119 @@
+Exp No.5: Second year Computer Engineering class, set A of students like Vanilla Ice-cream and set B of students like butterscotch ice-cream. Write C++ program to store two sets using linked list. compute and display-
+a) Set of students who like both vanilla and butterscotch
+b) Set of students who like either vanilla or butterscotch or not both
+c) Number of students who like neither vanilla nor butterscotch
+
+
+# code
+
+#include <iostream>
+#include <unordered_set>
+
+// Node structure for the linked list
+struct Node {
+    int data;
+    Node* next;
+};
+
+// Function to insert elements into the linked list
+void insert(Node*& head, int data) {
+    Node* newNode = new Node();
+    newNode->data = data;
+    newNode->next = head;
+    head = newNode;
+}
+
+// Function to display elements in the linked list
+void display(Node* head) {
+    Node* temp = head;
+    while (temp != nullptr) {
+        std::cout << temp->data << " ";
+        temp = temp->next;
+    }
+    std::cout << std::endl;
+}
+
+// Function to compute sets and counts
+void computeSets(Node* vanillaHead, Node* butterscotchHead) {
+    std::unordered_set<int> setA, setB, intersection, unionSet;
+    
+    // Inserting elements of set A (vanilla) into setA
+    Node* tempA = vanillaHead;
+    while (tempA != nullptr) {
+        setA.insert(tempA->data);
+        tempA = tempA->next;
+    }
+    
+    // Inserting elements of set B (butterscotch) into setB
+    Node* tempB = butterscotchHead;
+    while (tempB != nullptr) {
+        setB.insert(tempB->data);
+        tempB = tempB->next;
+    }
+
+    // Computing intersection
+    for (int elem : setA) {
+        if (setB.find(elem) != setB.end()) {
+            intersection.insert(elem);
+        }
+    }
+
+    // Computing union
+    for (int elem : setA) {
+        unionSet.insert(elem);
+    }
+    for (int elem : setB) {
+        unionSet.insert(elem);
+    }
+
+    // Displaying sets
+    std::cout << "Students who like both vanilla and butterscotch: ";
+    for (int elem : intersection) {
+        std::cout << elem << " ";
+    }
+    std::cout << std::endl;
+
+    std::cout << "Students who like either vanilla or butterscotch or not both: ";
+    for (int elem : unionSet) {
+        std::cout << elem << " ";
+    }
+    std::cout << std::endl;
+
+    // Computing number of students who like neither vanilla nor butterscotch
+    std::unordered_set<int> complement;
+    for (int i = 1; i <= 10; ++i) { // Assuming 10 students for demonstration
+        if (unionSet.find(i) == unionSet.end()) {
+            complement.insert(i);
+        }
+    }
+    std::cout << "Number of students who like neither vanilla nor butterscotch: " << complement.size() << std::endl;
+}
+
+int main() {
+    // Creating linked lists for set A (vanilla) and set B (butterscotch)
+    Node* vanillaHead = nullptr;
+    Node* butterscotchHead = nullptr;
+
+    // Inserting elements into set A
+    insert(vanillaHead, 2);
+    insert(vanillaHead, 4);
+    insert(vanillaHead, 6);
+
+    // Inserting elements into set B
+    insert(butterscotchHead, 4);
+    insert(butterscotchHead, 6);
+    insert(butterscotchHead, 8);
+
+    // Displaying elements in set A and set B
+    std::cout << "Set A (Students who like Vanilla): ";
+    display(vanillaHead);
+
+    std::cout << "Set B (Students who like Butterscotch): ";
+    display(butterscotchHead);
+
+    // Computing and displaying sets
+    computeSets(vanillaHead, butterscotchHead);
+
+    return 0;
+}
+
