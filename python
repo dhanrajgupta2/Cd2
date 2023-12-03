@@ -1,0 +1,776 @@
+#1.
+
+Experiment No.2 :Write a Python program to compute following operations on String:
+a) To display word with the longest length
+b) To determines the frequency of occurrence of particular character in the string
+c) To check whether given string is palindrome or not
+d) To display index of first appearance of the substring
+e) To count the occurrences of each word in a given string
+
+
+
+# a) To display word with the longest length
+
+statement = "welcome to DSL lab"
+words = max(statement.split(), key=len)
+print("The longest word is:", words)
+print("The longest word length is:", len(words))
+
+# b) To determines the frequency of occurrence of particular character in the string
+
+string="welcome to DSL lab" 
+c='e' 
+count=0 
+for i in range(len(string)): 
+    frequency=string.count(c) 
+print(frequency)
+
+# c) To check whether given string is palindrome or not
+
+def ispalindrome(s):
+    return S==S[::-1]
+    
+S="Nyan"
+ans= ispalindrome(S)
+
+if ans:
+    print("yes")
+else:
+    print("No")
+
+# d) To display index of first appearance of the substring 
+
+string = "Today is Tuesday"
+sub = "da"
+
+for i in range(len(string)):
+    si = []
+    k = i
+    flag = 0
+    
+    for j in range(len(sub)):
+        if k >= len(string) or string[k] != sub[j]:
+            flag = 1
+            break
+        k += 1
+    
+    if flag == 0:
+        si.append(i)
+        print(si)
+
+# e) To count the occurrences of each word in a given string
+
+string = "Today is Tuesday and Today is freshers party"
+list1 = []
+list1 = string.split()
+print("Old list is ", list1)
+
+newlist = []
+newlist_l = []
+
+for i in list1:
+    if i not in newlist:
+        newlist.append(i)
+
+print("Newlist is", newlist)
+
+for i in range(0, len(newlist)):
+    count = 0
+    for j in range(len(list1)):
+        if newlist[i] == list1[j]:
+            count += 1
+    newlist_l.append(count)
+
+for i in range(0, len(newlist)):
+    print(newlist[i], newlist_l[i])
+
+
+#2.
+
+'''
+This program is created by ATHARVA PAWAR
+
+Experiment No. 9 : Write a Python Program to compute following computation on matrices :
+                   a)Addition of two matrices
+                   b)Subtraction of two matrices
+                   c)Multiplication of two matrices
+                   d)Transpose of a matix
+'''
+
+import numpy
+
+# initializing matrices
+x = numpy.array([[1, 2], [4, 5]])
+y = numpy.array([[7, 8], [9, 10]])
+
+# using add() to add matrices
+print("The element wise addition of matrix is : ")
+print(numpy.add(x, y))
+
+# using subtract() to subtract matrices
+print("The element wise subtraction of matrix is : ")
+print(numpy.subtract(x, y))
+
+# using dot() to multiply matrices
+print ("The product of matrices is : ")
+print (numpy.dot(x,y))
+
+
+# using "T" to transpose the matrix
+print("The transpose of given matrix is : ")
+print(x.T)
+
+
+# Created by ATHARVA PAWAR
+
+#3.
+
+'''
+
+Experiment Number 2 : Write a python program to store marks stored in subject "Fundamentals of Data Structure" by
+                         N students in the class. Write functions to compute following:
+                         1. The average score of the class.
+                         2. Highest score and lowest score of the class.
+                         3. Count of students who were absent for the test.
+                         4. Display mark with highest frequency.
+'''
+
+
+# Function for average score of the class
+
+def average(listofmarks):
+    sum=0
+    count=0
+    for i in range(len(listofmarks)):
+        if listofmarks[i]!=-999:
+            sum+=listofmarks[i]
+            count+=1
+    avg=sum/count
+    print("Total Marks : ", sum)
+    print("Average Marks : {:.2f}".format(avg))
+
+#<----------------------------------------------------------------------------------------------------->
+
+# Function for Highest score in the test for the class
+
+def Maximum(listofmarks):
+    for i in range(len(listofmarks)):
+        if listofmarks[i]!=-999:
+            Max=listofmarks[0]
+            break
+    for i in range(1,len(listofmarks)):
+        if listofmarks[i]>Max:
+            Max=listofmarks[i]
+    return(Max)
+
+#<------------------------------------------------------------------------------------------------------>
+
+# Function for Lowest score in the test for the class
+
+def Minimum(listofmarks):
+    for i in range(len(listofmarks)):
+        if listofmarks[i]!=-999:
+            Min=listofmarks[0]
+            break
+    for i in range(1,len(listofmarks)):
+        if listofmarks[i]<Min:
+            Min=listofmarks[i]
+    return(Min)
+
+#<------------------------------------------------------------------------------------------------------->
+
+# Function for counting the number of students absent for the test
+
+def absentcount(listofmarks):
+    count=0
+    for i in range(len(listofmarks)):
+        if listofmarks[i]==-999:
+            count+=1
+    return(count)
+
+#<------------------------------------------------------------------------------------------------------->
+
+# Function for displaying marks with highest frequency
+def maxFrequency(listofmarks):
+    i=0
+    Max=0
+    print("Marks  |  Frequency")
+    for j in listofmarks:
+        if (listofmarks.index(j)==i):
+            print(j,"    |  ",listofmarks.count(j))
+            if listofmarks.count(j)>Max:
+                Max=listofmarks.count(j)
+                mark=j
+        i=i+1
+    return(mark,Max)
+
+
+#<------------------------------------------------------------------------------------------------------->
+
+# Main function
+
+marksinFDS=[]
+numberofstudents=int(input("Enter total number of students : "))
+for i in range(numberofstudents):
+    marks=int(input("Enter marks of student "+str(i+1)+" : "))
+    marksinFDS.append(marks)
+
+flag=1
+while flag==1:
+    print("\n\n--------------------MENU--------------------\n")
+    print("1. Total and Average Marks of the Class")
+    print("2. Highest and Lowest Marks in the Class")
+    print("3. Number of Students absent for the test")
+    print("4. Marks with Highest Frequency")
+    print("5. Exit\n")
+    ch=int(input("Enter your Choice (from 1 to 5) :"))
+
+    if ch==1:
+        average(marksinFDS)
+        a = input("Do you want to continue (yes/no) :")
+        if a == "yes":
+            flag = 1
+        else:
+            flag = 0
+            print("Thanks for using this program!")
+
+    elif ch==2:
+        print("Highest Score in Class : ", Maximum(marksinFDS))
+        print("Lowest Score in Class : ", Minimum(marksinFDS))
+        a = input("Do you want to continue (yes/no) :")
+        if a == "yes":
+            flag = 1
+        else:
+            flag = 0
+            print("Thanks for using this program!")
+
+    elif ch==3:
+        print("Number of Students absent in the test : ", absentcount(marksinFDS))
+        a = input("Do you want to continue (yes/no) :")
+        if a == "yes":
+            flag = 1
+        else:
+            flag = 0
+            print("Thanks for using this program!")
+
+    elif ch==4:
+        mark,fr = maxFrequency(marksinFDS)
+        print("Highest frequency is of marks {0} that is {1} ".format(mark,fr))
+        a = input("Do you want to continue (yes/no) :")
+        if a == "yes":
+            flag = 1
+        else:
+            flag = 0
+            print("Thanks for using this program!")
+
+    elif ch==5:
+        flag=0
+        print("Thanks for using this program!")
+
+    else:
+        print("!!Wrong Choice!! ")
+        a=input("Do you want to continue (yes/no) :")
+        if a=="yes":
+            flag=1
+        else:
+            flag=0
+            print("Thanks for using this program!")
+
+#<---------------------------------------------END OF PROGRAM--------------------------------------->
+
+#3.
+
+Exp No 3: Write a Python program to store roll numbers of student in array who attended training program in random order. 
+Write function for searching whether particular student attended training program or not, 
+using Linear search and Sentinel search.
+
+# code of linear search
+
+def display(a, n):
+    print(a)
+
+def read(a, n):
+    for i in range(n):
+        a.append(int(input()))
+
+def Linear_search(a, roll):
+    for i in range(len(a)):
+        if roll == a[i]:  # Corrected the comparison
+            return i
+    return -1  # Moved outside the loop
+
+def main():
+    a = []
+    n = int(input("Enter the number of students who attended training program: "))
+    print("Enter the roll numbers:")
+    read(a, n)
+    
+    print("Following students attended:")
+    display(a, n)
+    
+    roll_to_search = int(input("Which roll do you want to search? "))
+    key = Linear_search(a, roll_to_search)
+    
+    if key != -1:
+        print(f"Roll no. {a[key]} attended the program.")
+    else:
+        print(f"Roll no. {roll_to_search} did not attend the program.")
+
+main()
+
+# code of sentinel search
+
+print("SENTINEL SEARCH........")
+a = [12, 23, 45, 46, 56]
+n = len(a)
+
+def sentinel(a, key):
+    last = a[n - 1]
+    a[n - 1] = key
+    i = 0
+    while a[i] != key:
+        i += 1
+    a[n - 1] = last
+    if (i < n - 1) or (key == a[n - 1]):
+        print("Found at position:", i + 1)
+    else:
+        print("Not found")
+
+sentinel(a, 48)
+
+#4.
+
+'''
+
+
+Experiment No. 1 : In a second year computer engineering class, group A students play cricket, group B students play
+                   badminton and group C students play football.
+                   Write a python program using functions to compute following:
+                   a) List of students who play both cricket and badminton.
+                   b) List of students who play either cricket or badminton but not both.
+                   c) Number of students who play neither cricket nor badminton.
+                   d) Number of students who play cricket and football but not badminton.
+(NOTE : While realising the group, duplicate entries should be avoided. Do not use SET built-in functions)
+'''
+
+
+# Function for removing duplicate entries from the group
+
+def removeDuplicate(d):
+    lst=[]
+    for i in d:
+        if i not in lst:
+            lst.append(i)
+    return lst
+
+#<---------------------------------------------------------------------------------------->
+
+# Function for finding intersection between two sets (A&B)
+
+def intersection(lst1,lst2):
+    lst3=[]
+    for val in lst1:
+        if val in lst2:
+            lst3.append(val)
+    return lst3
+
+#<------------------------------------------------------------------------------------------>
+
+# Function for finding union of two sets (A|B)
+
+def union(lst1,lst2):
+    lst3=lst1.copy()
+    for val in lst2:
+        if val not in lst3:
+            lst3.append(val)
+    return lst3
+
+#<------------------------------------------------------------------------------------------->
+
+# Function for finding difference between two sets (A-B)
+
+def diff(lst1,lst2):
+    lst3=[]
+    for val in lst1:
+        if val not in lst2:
+            lst3.append(val)
+    return lst3
+
+#<---------------------------------------------------------------------------------------------->
+
+# Function for finding symmetric difference of two sets (A^B)
+
+def sym_diff(lst1,lst2):
+    lst3=[]
+    D1=diff(lst1,lst2)
+    print("Difference between Cricket and Badminton (C-B) is : ", D1)
+    D2=diff(lst2,lst1)
+    print("Difference between Badminton and Cricket (B-C) is : ", D2)
+    lst3=union(D1,D2)
+    return lst3
+
+#<------------------------------------------------------------------------------------------------>
+
+# Functon for finding List of students who play both cricket and badminton
+
+def CB(lst1,lst2):
+    lst3=intersection(lst1,lst2)
+    print("\n\nList of students who play both cricket and badminton is : ", lst3)
+    return len(lst3)
+
+#<------------------------------------------------------------------------------------------------>
+
+# Function for finding List of students who play either cricket or badminton but not both
+
+def eCeB(lst1,lst2):
+    lst3=sym_diff(lst1,lst2)
+    print("\nList of students who play either cricket or badminton but not both is : ",lst3)
+    return len(lst3)
+
+#<-------------------------------------------------------------------------------------------------->
+
+# Function for finding Number of students who play neither cricket nor badminton
+
+def nCnB(lst1,lst2,lst3):
+    lst4=diff(lst1,union(lst2,lst3))
+    print("\n\nList of students who play neither cricket nor badminton is : ",lst4)
+    return len(lst4)
+
+#<--------------------------------------------------------------------------------------------------->
+
+# Function for finding Number of students who play cricket and football but not badminton
+
+def CBnF(lst1,lst2,lst3):
+    lst4=diff(intersection(lst1,lst2),lst3)
+    print("\n\nList of students who play cricket and football but not badminton is : ",lst4)
+    return len(lst4)
+
+#<----------------------------------------------------------------------------------------------------->
+
+# Main function
+
+# Creating an empty list for SE COMP
+SEComp = []
+n = int(input("\nEnter number of students in SE COMP: "))
+print("Enter the names of",n,"students (Please press ENTER after entering each students name) :")
+for i in range(0, n):
+    ele = input()
+    SEComp.append(ele)  # adding the element
+print("Original list of students in SEComp : " + str(SEComp))
+
+#<------------------------------------------------------------------------------------------------------->
+
+
+# Creating an empty list for Cricket
+Cricket = []
+n = int(input("\n\nEnter number of students who play cricket : "))
+print("Enter the names of",n,"students who play cricket (Please press ENTER after entering each students name) :")
+for i in range(0, n):
+    ele = input()
+    Cricket.append(ele)  # adding the element
+print("Original list of students playing cricket is :" +str(Cricket))
+Cricket=removeDuplicate(Cricket)
+print("The list of students playing cricket after removing duplicates : " +str(Cricket))
+
+#<------------------------------------------------------------------------------------------------------->
+
+
+# Creating an empty list for Football
+Football = []
+n = int(input("\n\nEnter number of students who play football : "))
+print("Enter the name of",n,"students who play football (Please press ENTER after entering each students name) :")
+for i in range(0, n):
+    ele = input()
+    Football.append(ele)  # adding the element
+print("Original list of students playing football :" +str(Football))
+Football=removeDuplicate(Football)
+print("The list of students playing football after removing duplicates : " +str(Football))
+
+#<-------------------------------------------------------------------------------------------------------->
+
+
+# Creating an empty list for Badminton
+Badminton = []
+n = int(input("\n\nEnter number of students who play badminton : "))
+print("Enter the name of",n,"students who play badminton (Please press ENTER after entering each students name) :")
+for i in range(0, n):
+    ele = input()
+    Badminton.append(ele)  # adding the element
+print("Original list of students playing badminton :" +str(Badminton))
+Badminton=removeDuplicate(Badminton)
+print("The list of students playing badminton after removing duplicates : " +str(Badminton))
+
+#<---------------------------------------------------------------------------------------------------------->
+
+flag=1
+while flag==1:
+    print("\n\n--------------------MENU--------------------\n")
+    print("1. List of students who play both cricket and badminton")
+    print("2. List of students who play either cricket or badminton but not both")
+    print("3. List of students who play neither cricket nor badminton")
+    print("4. Number of students who play cricket and football but not badminton")
+    print("5. Exit\n")
+    ch=int(input("Enter your Choice (from 1 to 5) :"))
+
+    if ch==1:
+        print("Number of students who play both cricket and badminton : ", CB(Cricket,Badminton))
+        a = input("\n\nDo you want to continue (yes/no) :")
+        if a == "yes":
+            flag = 1
+        else:
+            flag = 0
+            print("Thanks for using this program!")
+
+    elif ch==2:
+        print("Number of students who play either cricket or badminton but not both : ", eCeB(Cricket, Badminton))
+        a = input("\n\nDo you want to continue (yes/no) :")
+        if a == "yes":
+            flag = 1
+        else:
+            flag = 0
+            print("Thanks for using this program!")
+
+    elif ch==3:
+        print("Number of students who play neither cricket nor badminton : ", nCnB(SEComp,Cricket,Badminton))
+        a = input("\n\nDo you want to continue (yes/no) :")
+        if a == "yes":
+            flag = 1
+        else:
+            flag = 0
+            print("Thanks for using this program!")
+
+    elif ch==4:
+        print("Number of students who play cricket and football but not badminton : ", CBnF(Cricket,Football,Badminton))
+        a = input("\n\nDo you want to continue (yes/no) :")
+        if a == "yes":
+            flag = 1
+        else:
+            flag = 0
+            print("Thanks for using this program!")
+
+    elif ch==5:
+        flag=0
+        print("Thanks for using this program!")
+
+    else:
+        print("!!Wrong Choice!! ")
+        a=input("\n\nDo you want to continue (yes/no) :")
+        if a=="yes":
+            flag=1
+        else:
+            flag=0
+            print("Thanks for using this program!")
+
+#<---------------------------------------------END OF PROGRAM--------------------------------------->
+
+#5.
+
+'''
+
+
+Experiment Number 14: Write a python program to store first year percentage of students in an array.
+                      Write function for sorting array of floating point numbers in ascending order using:
+                      a) Selection Sort
+                      b) Bubble Sort and display top five scores
+'''
+
+
+# Function for Selection Sort of elements
+
+def Selection_Sort(marks):
+    for i in range(len(marks)):
+
+        # Find the minimum element in remaining unsorted array
+        min_idx = i
+        for j in range(i + 1, len(marks)):
+            if marks[min_idx] > marks[j]:
+                min_idx = j
+
+        # Swap the minimum element with the first element
+        marks[i], marks[min_idx] = marks[min_idx], marks[i]
+
+    print("Marks of students after performing Selection Sort on the list : ")
+    for i in range(len(marks)):
+        print(marks[i])
+
+#<--------------------------------------------------------------------------------------->
+
+# Function for Bubble Sort of elements
+
+def Bubble_Sort(marks):
+    n = len(marks)
+    # Traverse through all array elements
+    for i in range(n - 1):
+        # Last i elements are already in place
+        for j in range(0, n - i - 1):
+
+            # Traverse the array from 0 to n-i-1
+            # Swap if the element found is greater than the next element
+            if marks[j] > marks[j + 1]:
+                marks[j], marks[j + 1] = marks[j + 1], marks[j]
+
+    print("Marks of students after performing Bubble Sort on the list :")
+    for i in range(len(marks)):
+        print(marks[i])
+
+#<--------------------------------------------------------------------------------------->
+
+# Function for displaying top five marks
+
+def top_five_marks(marks):
+    print("Top",len(marks),"Marks are : ")
+    print(*marks[::-1], sep="\n")
+
+#<---------------------------------------------------------------------------------------->
+
+# Main
+
+marks=[]
+n = int(input("Enter number of students whose marks are to be displayed : "))
+print("Enter marks for",n,"students (Press ENTER after every students marks): ")
+for i in range(0, n):
+    ele = int(input())
+    marks.append(ele)  # adding the element
+
+print("The marks of",n,"students are : ")
+print(marks)
+
+flag=1;
+while flag==1:
+    print("\n---------------MENU---------------")
+    print("1. Selection Sort of the marks")
+    print("2. Bubble Sort of the marks")
+    print("3. Exit")
+    ch=int(input("\n\nEnter your choice (from 1 to 3) : "))
+
+    if ch==1:
+        Selection_Sort(marks)
+        a=input("\nDo you want to display top marks from the list (yes/no) : ")
+        if a=='yes':
+            top_five_marks(marks)
+        else:
+            print("\nThanks for using this program!")
+            flag=0
+
+    elif ch==2:
+        Bubble_Sort(marks)
+        a = input("\nDo you want to display top five marks from the list (yes/no) : ")
+        if a == 'yes':
+            top_five_marks(marks)
+        else:
+            print("\nThanks for using this program!")
+            flag = 0
+
+    elif ch==3:
+        print("\nThanks for using this program!!")
+        flag=0
+
+    else:
+        print("\nEnter a valid choice!!")
+        print("\nThanks for using this program!!")
+        flag=0
+
+
+#<----------------------------------------END OF PROGRAM------------------------------------------------->
+
+#6.
+
+Exp No.3: Write a Python program to store roll numbers of student array who attended training program in sorted order. 
+Write function for searching whether particular student attended training program or not, 
+using Binary search and Fibonacci search
+
+# code for binary search
+
+def binary_search(arr, x):
+    left, right = 0, len(arr) - 1
+
+    while left <= right:
+        mid = left + (right - left) // 2
+
+        # Check if x is present at the mid
+        if arr[mid] == x:
+            return True
+        # If x is greater, ignore left half
+        elif arr[mid] < x:
+            left = mid + 1
+        # If x is smaller, ignore right half
+        else:
+            right = mid - 1
+
+    return False
+
+
+def insert_sorted_roll_numbers(roll_numbers, roll_number):
+    # Assuming roll_numbers is already sorted
+    roll_numbers.append(roll_number)
+    roll_numbers.sort()  # Sorting the roll numbers after insertion
+
+
+# Example roll numbers of students who attended the training program
+attended_roll_numbers = [2, 5, 8, 10, 15, 20, 25, 30]
+
+# Function to check if a specific roll number attended the program
+def check_attendance(roll):
+    return binary_search(attended_roll_numbers, roll)
+
+
+# Test the function
+roll_number_to_check = 15
+if check_attendance(roll_number_to_check):
+    print(f"Roll number {roll_number_to_check} attended the training program.")
+else:
+    print(f"Roll number {roll_number_to_check} did not attend the training program.")
+
+
+# code for Fibonacci search
+
+def fibonacci_search(arr, x):
+    fib_n_minus_2 = 0
+    fib_n_minus_1 = 1
+    fib = fib_n_minus_1 + fib_n_minus_2
+
+    while fib < len(arr):
+        fib_n_minus_2 = fib_n_minus_1
+        fib_n_minus_1 = fib
+        fib = fib_n_minus_1 + fib_n_minus_2
+
+    offset = -1
+
+    while fib > 1:
+        i = min(offset + fib_n_minus_2, len(arr) - 1)
+
+        if arr[i] == x:
+            return i
+        elif arr[i] < x:
+            fib = fib_n_minus_1
+            fib_n_minus_1 = fib_n_minus_2
+            fib_n_minus_2 = fib - fib_n_minus_1
+            offset = i
+        else:
+            fib = fib_n_minus_2
+            fib_n_minus_1 = fib_n_minus_1 - fib_n_minus_2
+            fib_n_minus_2 = fib - fib_n_minus_1
+
+    if fib_n_minus_1 and arr[offset + 1] == x:
+        return offset + 1
+
+    return -1
+
+def insert_sorted(arr, roll):
+    # Assuming the array is already sorted
+    # If not, sorting logic can be added here before insertion
+    arr.append(roll)
+    arr.sort()
+
+# Example usage:
+roll_numbers = [12, 23, 34, 45, 56, 67, 78, 89]
+insert_sorted(roll_numbers, 50)  # Inserting a new roll number (50)
+print("Sorted Roll Numbers:", roll_numbers)
+
+# Search for a specific roll number using Fibonacci Search
+roll_to_search = 45
+result_fibonacci = fibonacci_search(roll_numbers, roll_to_search)
+if result_fibonacci != -1:
+    print(f"Roll number {roll_to_search} attended the program (Fibonacci Search).")
+else:
+    print(f"Roll number {roll_to_search} did not attend the program (Fibonacci Search).")
