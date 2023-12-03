@@ -1,0 +1,83 @@
+Experiment No.2 :Write a Python program to compute following operations on String:
+a) To display word with the longest length
+b) To determines the frequency of occurrence of particular character in the string
+c) To check whether given string is palindrome or not
+d) To display index of first appearance of the substring
+e) To count the occurrences of each word in a given string
+
+
+
+# a) To display word with the longest length
+
+statement = "welcome to DSL lab"
+words = max(statement.split(), key=len)
+print("The longest word is:", words)
+print("The longest word length is:", len(words))
+
+# b) To determines the frequency of occurrence of particular character in the string
+
+string="welcome to DSL lab" 
+c='e' 
+count=0 
+for i in range(len(string)): 
+    frequency=string.count(c) 
+print(frequency)
+
+# c) To check whether given string is palindrome or not
+
+def ispalindrome(s):
+    return S==S[::-1]
+    
+S="Nyan"
+ans= ispalindrome(S)
+
+if ans:
+    print("yes")
+else:
+    print("No")
+
+# d) To display index of first appearance of the substring 
+
+string = "Today is Tuesday"
+sub = "da"
+
+for i in range(len(string)):
+    si = []
+    k = i
+    flag = 0
+    
+    for j in range(len(sub)):
+        if k >= len(string) or string[k] != sub[j]:
+            flag = 1
+            break
+        k += 1
+    
+    if flag == 0:
+        si.append(i)
+        print(si)
+
+# e) To count the occurrences of each word in a given string
+
+string = "Today is Tuesday and Today is freshers party"
+list1 = []
+list1 = string.split()
+print("Old list is ", list1)
+
+newlist = []
+newlist_l = []
+
+for i in list1:
+    if i not in newlist:
+        newlist.append(i)
+
+print("Newlist is", newlist)
+
+for i in range(0, len(newlist)):
+    count = 0
+    for j in range(len(list1)):
+        if newlist[i] == list1[j]:
+            count += 1
+    newlist_l.append(count)
+
+for i in range(0, len(newlist)):
+    print(newlist[i], newlist_l[i])
