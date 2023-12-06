@@ -4,148 +4,138 @@ Orders are served in first come first served basis. Order once placed can not be
 Write C++ program to simulate the system using circular queue using array.
 */
 
+
 #include<iostream>
-#include<cstdlib>
 using namespace std;
-class pizza
+const int MAX=5;
+
+class PizzaParlour
 {
- int front,rear,q[5];
- public:
- pizza()
- {
- front=-1;
- rear=-1;
- }
- int isfull()
- {
-
-if((front==0&&rear==4)||front==rear+1)
- {
- return 1;
- }
-else
-{
- return 0;
- }
- }
- int isempty()
- {
- if(front==-1&&rear==-1)
- {
- return 1;
- }
- else
-{
- return 0;
- }
- }
- void add()
- {
- if(isfull()==0)
- {
- cout<<"\n Enter the Pizza ID: ";
- if(front==-1&&rear==-1)
- {
- front=0;
- rear=0;
- cin>>q[rear];
- }
- else
- {
- rear=(rear+1)%5;
- cin>>q[rear];
- }
- char c;
- cout<<" Do you want to add another order ? ";
- cin>>c;
- if(c=='y'||c=='Y')
- add();
- }
- else
- {
- cout<<"\n Orders are full ";
- }
-
- }
- void serve()
- {
- if(isempty()==0)
- {
- if(front==rear)
- {
- cout<<"\n Order served is : "<<q[front];
- front=-1;
- rear=-1;
- }
- else
- {
- cout<<"\n Order served is : "<<q[front];
- front=(front+1)%5;
- }
- }
- else
- {
- cout<<"\n Orders are empty ";
- }
- }
- void display()
- {
- if(isempty()==0)
- {
- for(int
-i=front;i!=rear;i=(i+1)%5)
- {
- cout<<q[i]<<"
-<- ";
- }
- cout<<q[rear];
- }
- else
- {
- cout<<"\n Orders are empty";
- }
- }
- void check()
- {
- int ch;
-cout<<"\n\n * * * * PIZZA PARLOUR * * * * \n\n";
- cout<<"\n 1. Add a Pizza \n 2. Display the Orders \n 3. Serve a pizza \n 4. Exit \n Enter your choice : ";
- cin>>ch;
-switch(ch)
-{
- case 1:
- add();
-break;
-
- case 2:
-
-display();
- break;
-
- case 3:
-
-serve();
- break;
-
- case 4:
-
-exit(0);
-
- default:
- cout<<"Invalid choice ";
-
-check();
- }
-char ch1;
-cout<<"\n Do you want to continue? ";
- cin>>ch1;
- if(ch1=='y'||ch1=='Y')
-check();
- }
+	int front,rear;
+	int orders [MAX];
+	public:
+		PizzaParlour()
+		{
+			front=rear=-1;
+		}
+		bool addOrder(int data);
+		void serveOrder();
+		void display();
 };
+bool PizzaParlour::addOrder(int id){
+	if(rear==-1)
+	{
+		front=rear=0;
+		orders[rear]=id;
+		return true;
+	 }
+	 else
+	 {
+		int pos=(rear+1)%MAX;
+		if (pos==front)
+		{
+			cout<<"\nCafe is Full.Please wait.\n";
+			return false;
+		 }
+		 else
+		 {
+			rear=pos;
+			orders[rear]=id;
+			return true;
+		 }
+	 }
+ }
+
+ void PizzaParlour::serveOrder()
+ {
+	if(front==-1)
+	{
+		cout<<"\n No Orders in Cafe.[Cafe is Empty)\n";
+		return;
+	 }
+	 else
+	 {
+		cout<<"\n Order No. "<<orders[front]<<" is processed.\n";
+		if(front==rear) //only one order
+		{
+			front=rear=-1;
+		 }
+		 else
+		 {
+			front=(front+1)%MAX;
+		 }
+	 }
+ }
+
+ void PizzaParlour::display()
+ {
+	int i=0;
+	if(front==-1)
+	{
+		cout<<"\nCafe is Empty.No orders.\n";
+		return;
+	 }
+	 else
+	 {
+		cout<<"Order Id's: \n";
+		for(i=front;i!=rear;i=((i+1)%MAX))
+		{
+			cout<<orders[i]<<"  ";
+		 }
+		cout<<orders[rear];
+	 }
+ }
+ void intro()
+ {	char name[50]={"\n Vaibhav Cafe \n"};
+		for(int i=0;name[i]!='\0';i++)
+	{
+		cout<<name[i];
+		
+	}
+ }
 int main()
-{
- pizza p1;
- p1.check();
- return 0;
-}
+ {
+	int ch,id=0;
+
+	PizzaParlour q;
+
+	do
+	{
+		cout<<"\n-----------------";
+	intro();
+		cout<<"-----------------";
+		cout<<"\n****Menu*****\n";
+		cout<<"1. Accept order\n";
+		cout<<"2. Serve order\n";
+		cout<<"3. Display orders\n";
+		cout<<"4. Exit";
+
+		cout<<"\nChoice: ";
+		cin>>ch;
+
+		switch(ch)
+		{
+		case 1: 
+				id++;
+				if(q.addOrder(id))
+				{
+					cout<<"Thank you for order.Order id is : "<<id;
+				}
+				else
+				{
+					id--;
+				}
+				break;
+
+		case 2: q.serveOrder();
+				break;
+
+		case 3: q.display();
+				break;
+		}
+	}while (ch!=4);
+	cout<<"\nThankYou.Keep Visiting.";
+
+ }
+
+//write 1 then 2 after that 3 then output will be cafe is empty
