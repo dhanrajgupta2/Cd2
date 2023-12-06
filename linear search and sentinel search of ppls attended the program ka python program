@@ -57,3 +57,9 @@ def sentinel(a, key):
 sentinel(a, 48)
 
 
+#Linear Search Example:
+#Input:
+
+#Number of students: 5
+#Roll numbers entered: 10, 20, 30, 40, 50
+#Roll number to search: 30 (he attended the program)
