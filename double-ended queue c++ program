@@ -4,7 +4,8 @@ representation mapping a deque into a one-dimensional array. Write C++ program t
 and delete elements from either end of the deque. 
 */
 
-#include<iostream>
+
+    #include<iostream>
 #include<stdio.h>
 #define MAX 10
 using namespace std;
@@ -155,3 +156,19 @@ int main()
     }
     return 0;
 }
+
+
+// Example 1:
+//1.Input:
+
+//2.Insert front: 5
+//3.Insert rear: 10
+//4.Print
+//5.Delete front
+//6.Print
+//7.Insert front: 7
+//8.Insert rear: 12
+//9.Delete rear
+//10.Print
+//11.Exit
+
