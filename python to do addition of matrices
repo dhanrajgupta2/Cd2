@@ -33,3 +33,74 @@ print(x.T)
 
 
 # Created by ATHARVA PAWAR
+
+
+#or
+
+'''' #(')-> remove this to make the content below into code 
+
+def matrix_addition(matrix1, matrix2):
+    result = []
+    for i in range(len(matrix1)):
+        row = []
+        for j in range(len(matrix1[0])):
+            row.append(matrix1[i][j] + matrix2[i][j])
+        result.append(row)
+    return result
+
+def matrix_subtraction(matrix1, matrix2):
+    result = []
+    for i in range(len(matrix1)):
+        row = []
+        for j in range(len(matrix1[0])):
+            row.append(matrix1[i][j] - matrix2[i][j])
+        result.append(row)
+    return result
+
+def matrix_multiplication(matrix1, matrix2):
+    result = []
+    for i in range(len(matrix1)):
+        row = []
+        for j in range(len(matrix2[0])):
+            temp = 0
+            for k in range(len(matrix2)):
+                temp += matrix1[i][k] * matrix2[k][j]
+            row.append(temp)
+        result.append(row)
+    return result
+
+def matrix_transpose(matrix):
+    return [[matrix[j][i] for j in range(len(matrix))] for i in range(len(matrix[0]))]
+
+# Example matrices
+matrix_A = [[1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 9]]
+
+matrix_B = [[9, 8, 7],
+            [6, 5, 4],
+            [3, 2, 1]]
+
+# Addition of matrices
+result_addition = matrix_addition(matrix_A, matrix_B)
+print("Addition of matrices:")
+for row in result_addition:
+    print(row)
+
+# Subtraction of matrices
+result_subtraction = matrix_subtraction(matrix_A, matrix_B)
+print("\nSubtraction of matrices:")
+for row in result_subtraction:
+    print(row)
+
+# Multiplication of matrices
+result_multiplication = matrix_multiplication(matrix_A, matrix_B)
+print("\nMultiplication of matrices:")
+for row in result_multiplication:
+    print(row)
+
+# Transpose of matrix A
+result_transpose = matrix_transpose(matrix_A)
+print("\nTranspose of matrix A:")
+for row in result_transpose:
+    print(row)
